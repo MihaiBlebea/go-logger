@@ -29,7 +29,7 @@ func main() {
 	}
 }
 
-// Mux handlers
+// rootHandler handles the connections for the "/" path
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 
 	createLogTable()
@@ -38,6 +38,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("All good"))
 }
 
+// logHandler handles the connections for the POST "/log" path
 func logHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		log.Panic("Only POST method is supported")
@@ -67,6 +68,7 @@ func logHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(logJSON)
 }
 
+// logsHandler handles the connections for the GET "/logs" path
 func logsHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		log.Panic("Only GET method is supported")
@@ -86,6 +88,7 @@ func logsHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(jsonModels)
 }
 
+// deleteHandler handles the connections for the DELETE "/delete" path
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "DELETE" {
 		log.Panic("Only DELETE method is supported")
