@@ -8,11 +8,13 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/MihaiBlebea/go-logger/repos"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
 
+	repos.Name
 	os.Setenv("MYSQL_USER", "admin")
 	os.Setenv("MYSQL_PASSWORD", "root")
 	os.Setenv("MYSQL_DATABASE", "dev_logger")
