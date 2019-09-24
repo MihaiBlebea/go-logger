@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql
+    container_name: logger-database
+    # restart: always
+    volumes:
+      - 'db:/var/lib/mysql/data'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: pass
+      MYSQL_USER: admin
+      MYSQL_DATABASE: dev_logger
+    ports:
+      - "3306:3306"
+  app:
+    build: .
+    container_name: go-logger-app
+    volumes:
+      - 'app:/var/app/'
+    ports:
+      - "8089:8080"
+volumes:
+  db:
+  app:
